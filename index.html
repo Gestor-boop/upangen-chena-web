@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Üpangen Chena · Amanecer del Mar · Los Vilos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ocean:    #0b3350;
+  --ocean2:   #1a6b8a;
+  --teal:     #2aa8c4;
+  --foam:     #7eccc8;
+  --coral:    #d4614a;
+  --terra:    #b84e3a;
+  --sand:     #f5ede0;
+  --sand2:    #ede2cf;
+  --cream:    #fdf8f2;
+  --dark:     #0f1f2b;
+  --mid:      #3d5a6b;
+  --light:    #8aa8b5;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.7rem 2.5rem;
+  background:rgba(253,248,242,0.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,164,108,.2);
+  box-shadow:0 1px 18px rgba(11,51,80,.07);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:.5rem;
+  text-decoration:none;
+}
+.nav-logo img{
+  height:48px;width:auto;
+}
+.nav-wordmark{
+  font-family:'Cinzel',serif;
+  font-size:1.05rem;font-weight:600;letter-spacing:.08em;
+  color:var(--ocean);
+  line-height:1.15;
+}
+.nav-wordmark span{
+  display:block;font-size:.62rem;font-weight:600;
+  letter-spacing:.25em;color:#c0392b;text-transform:uppercase;
+  font-family:'DM Sans',sans-serif;margin-top:.06rem;
+}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{
+  color:var(--mid);text-decoration:none;
+  font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  transition:color .2s;font-weight:500;
+}
+.nav-links a:hover{color:var(--ocean);}
+.nav-btn{
+  background:var(--coral);color:#fff!important;
+  padding:.55rem 1.6rem;border-radius:2rem;font-weight:600!important;
+  box-shadow:0 3px 14px rgba(212,97,74,.35);
+  letter-spacing:.04em;font-size:.82rem!important;
+  transition:background .2s,transform .15s,box-shadow .2s!important;
+}
+.nav-btn:hover{
+  background:var(--terra)!important;
+  transform:translateY(-1px);
+  box-shadow:0 5px 18px rgba(212,97,74,.45)!important;
+}
+.nav-btn:active{transform:translateY(0)!important;}
+.nav-wave{display:none;}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:url("assets/hero-bg.jpg") center/cover no-repeat;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:7rem 1.5rem 5rem;
+  position:relative;overflow:hidden;
+}
+
+
+.hero::before{
+  content:'';
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(6,24,40,.78) 0%,
+    rgba(8,32,52,.68) 25%,
+    rgba(10,45,68,.55) 55%,
+    rgba(14,65,95,.42) 80%,
+    rgba(20,85,115,.35) 100%
+  );
+}
+.hero > *:not(.hero-glow):not(.hero-waves){
+  position:relative;z-index:2;
+}
+.hero-glow{z-index:1;}
+.hero-waves{z-index:3;}
+.hero-glow{
+  position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);
+  width:120%;height:300px;
+  background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(42,168,196,.22) 0%,transparent 70%);
+}
+.hero-waves{position:absolute;bottom:0;left:0;right:0;line-height:0;}
+.badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;border:1px solid rgba(245,237,224,.35);
+  color:#f5ede0;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:.38rem 1.1rem;border-radius:2rem;margin-bottom:1.8rem;
+  animation:fadeDown .7s ease both;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.2rem,8.5vw,6.8rem);font-weight:300;
+  color:#f0e6d3;line-height:.92;letter-spacing:-.01em;
+  animation:fadeUp .8s ease .15s both;
+  text-shadow:0 2px 24px rgba(0,0,0,.5),0 1px 6px rgba(0,0,0,.35);
+}
+.hero h1 em{color:#e8a84a;font-style:italic;}
+.hero-restaurant{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(1rem,2.2vw,1.5rem);font-weight:700;letter-spacing:.45em;
+  text-transform:uppercase;color:#c0392b;
+  margin-bottom:.8rem;margin-top:.2rem;
+  animation:fadeUp .8s ease .22s both;
+  text-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,2.5vw,1.4rem);font-weight:300;font-style:italic;
+  color:#f0e6d3;margin:1rem 0 2.5rem;
+  animation:fadeUp .8s ease .3s both;
+  text-shadow:0 1px 14px rgba(0,0,0,.5),0 1px 4px rgba(0,0,0,.4);
+}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s ease .45s both;}
+.btn-primary{
+  background:var(--coral);color:#fff;padding:.75rem 2rem;
+  border-radius:2rem;font-size:.9rem;font-weight:500;text-decoration:none;
+  transition:background .25s,transform .2s;display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary:hover{background:var(--terra);transform:translateY(-2px);}
+.btn-outline{
+  border:none;color:#e8a84a;padding:.75rem 2rem;
+  border-radius:2rem;font-size:.9rem;font-weight:700;text-decoration:none;
+  transition:background .25s,color .25s,transform .2s;
+  background:#f5ede0;
+  letter-spacing:.02em;
+  display:inline-flex;align-items:center;
+}
+.btn-outline:hover{
+  background:#ede2cf;
+  transform:translateY(-2px);
+}
+.hero-social{
+  display:flex;gap:1.8rem;margin-top:2.5rem;
+  animation:fadeUp .8s ease .55s both;
+  padding-top:1.4rem;
+  border-top:1px solid rgba(240,230,211,.25);
+  align-items:center;justify-content:center;
+}
+.hero-social-icon{
+  display:flex;align-items:center;justify-content:center;
+  width:54px;height:54px;border-radius:50%;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  transition:background .25s,transform .2s,border-color .25s;
+  text-decoration:none;
+  backdrop-filter:blur(6px);
+}
+.hero-social-icon:hover{
+  background:rgba(255,255,255,.22);
+  border-color:rgba(255,255,255,.4);
+  transform:translateY(-3px);
+}
+
+/* ── SECTIONS SHARED ── */
+section{padding:5rem 1.5rem;}
+.section-tag{
+  display:inline-block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);font-weight:500;margin-bottom:.6rem;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,2.8rem);font-weight:400;line-height:1.1;
+  color:var(--ocean);margin-bottom:1.2rem;
+}
+.section-title em{color:var(--coral);font-style:italic;}
+.section-body{font-size:.95rem;color:var(--mid);line-height:1.75;max-width:520px;}
+.container{max-width:1080px;margin:0 auto;}
+
+/* ── HISTORIA ── */
+.historia{background:var(--sand);}
+.historia-inner{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:3rem;
+  align-items:center;
+}
+.historia-inner > .reveal{
+  min-width:0;
+}
+.slideshow{
+  border-radius:16px;overflow:hidden;
+  aspect-ratio:4/3;position:relative;
+  box-shadow:0 8px 32px rgba(11,51,80,.15);
+  width:100%;
+}
+.slideshow-slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 0.6s ease-in-out;
+}
+.slideshow-slide.active{opacity:1;}
+.slideshow-slide img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.slideshow-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(11,51,80,.45) 0%,transparent 55%);
+  pointer-events:none;
+}
+.slideshow-label{
+  position:absolute;bottom:1rem;left:1.2rem;
+  font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;
+  color:rgba(255,255,255,.92);text-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.slideshow-dots{
+  position:absolute;bottom:1rem;right:1.2rem;
+  display:flex;gap:.45rem;
+}
+.slideshow-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,.4);
+  transition:background .3s,transform .3s;cursor:pointer;border:none;padding:0;
+}
+.slideshow-dot.active{background:#fff;transform:scale(1.2);}
+.historia-img-label{display:none;}
+.historia-texto{text-align:left;}
+.historia-texto .section-title{margin-top:0;}
+.historia-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}
+.chip{
+  background:rgba(42,168,196,.1);border:1px solid rgba(42,168,196,.25);
+  color:var(--ocean2);font-size:.75rem;padding:.3rem .8rem;border-radius:2rem;
+}
+
+/* ── PLATOS ── */
+.platos{background:var(--cream);}
+.platos-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem;margin-top:2.5rem;
+}
+.plato-card{
+  background:#fff;border-radius:16px;overflow:hidden;
+  box-shadow:0 2px 18px rgba(11,51,80,.07);
+  transition:transform .25s,box-shadow .25s;
+}
+.plato-card:hover{transform:translateY(-5px);box-shadow:0 8px 32px rgba(11,51,80,.12);}
+.plato-img{
+  height:160px;background:linear-gradient(135deg,var(--ocean),var(--ocean2));
+  position:relative;overflow:hidden;
+}
+.plato-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.plato-emoji{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:2.8rem;opacity:.5;
+}
+.plato-body{padding:1.1rem 1.2rem 1.4rem;}
+.plato-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ocean);margin-bottom:.3rem;}
+.plato-desc{font-size:.8rem;color:var(--mid);line-height:1.55;}
+.plato-tag{
+  display:inline-block;margin-top:.6rem;
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(212,97,74,.1);color:var(--coral);padding:.22rem .65rem;border-radius:2rem;
+}
+
+/* ── EXPERIENCIA ── */
+
+
+/* ── RESEÑAS ── */
+.resenas{background:var(--sand);}
+.rating-big{
+  display:flex;align-items:center;gap:1rem;margin:1.5rem 0 2.5rem;
+}
+.rating-num{
+  font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:var(--ocean);line-height:1;
+}
+.rating-stars{color:var(--coral);font-size:1.4rem;letter-spacing:.1em;}
+.rating-count{font-size:.82rem;color:var(--mid);}
+.resenas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
+.resena-card{
+  background:#fff;border-radius:14px;padding:1.5rem;
+  box-shadow:0 2px 14px rgba(11,51,80,.06);
+}
+.resena-stars{color:var(--coral);font-size:.9rem;margin-bottom:.7rem;}
+.resena-text{font-size:.88rem;color:var(--mid);line-height:1.65;font-style:italic;}
+.resena-autor{margin-top:.9rem;font-size:.78rem;font-weight:500;color:var(--ocean);letter-spacing:.05em;}
+
+/* ── MAPA ── */
+.mapa-section{background:var(--cream);}
+.mapa-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:2.5rem;}
+.mapa-frame{border-radius:16px;overflow:hidden;box-shadow:0 4px 28px rgba(11,51,80,.12);position:relative;}
+.mapa-frame iframe{display:block;width:100%;height:380px;border:none;}
+.mapa-info{display:flex;flex-direction:column;gap:1.5rem;}
+.info-item{display:flex;gap:1rem;align-items:flex-start;}
+.info-icon{
+  width:40px;height:40px;flex-shrink:0;
+  background:rgba(42,168,196,.1);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+}
+.info-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:.2rem;}
+.info-value{font-size:.92rem;color:var(--dark);font-weight:500;line-height:1.4;}
+.info-value a{color:var(--teal);text-decoration:none;}
+.info-value a:hover{color:var(--ocean2);}
+
+/* ── CONTACTO ── */
+.contacto{background:var(--ocean);}
+.contacto-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.contacto .section-title{color:#fff;}
+.contacto .section-body{color:rgba(255,255,255,.6);}
+.social-links{display:flex;flex-direction:column;gap:.8rem;margin-top:1.8rem;}
+.social-link{
+  display:flex;align-items:center;gap:.9rem;
+  padding:.8rem 1.1rem;border-radius:12px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  text-decoration:none;color:#fff;font-size:.88rem;
+  transition:background .25s,border-color .25s;
+}
+.social-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);}
+.social-link span{font-size:.75rem;color:rgba(255,255,255,.45);margin-left:auto;}
+.contact-form{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;padding:2rem;
+}
+.contact-form h3{
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;
+  color:#fff;margin-bottom:1.2rem;
+}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.4rem;}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  border-radius:8px;padding:.7rem .9rem;color:#fff;font-size:.9rem;font-family:'DM Sans',sans-serif;
+  outline:none;transition:border-color .2s;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:rgba(255,255,255,.3);}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--teal);}
+.form-group select option{background:var(--ocean);color:#fff;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.btn-wa{
+  width:100%;background:linear-gradient(135deg,#25d366,#128c3e);
+  color:#fff;border:none;padding:.85rem;border-radius:10px;
+  font-size:.92rem;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  transition:opacity .2s,transform .2s;margin-top:.5rem;
+}
+.btn-wa:hover{opacity:.9;transform:translateY(-1px);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);color:rgba(255,255,255,.45);
+  padding:2.5rem 1.5rem;text-align:center;
+}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:rgba(255,255,255,.8);letter-spacing:.06em;}
+.footer-logo em{color:var(--foam);font-style:normal;}
+.footer-sep{width:40px;height:1px;background:rgba(255,255,255,.15);}
+.footer-text{font-size:.78rem;line-height:1.6;}
+
+/* ── WHATSAPP FLOTANTE ── */
+.wa-float{
+  position:fixed;bottom:2rem;right:2rem;z-index:300;
+  display:flex;align-items:center;gap:.7rem;
+}
+.wa-label-bubble{
+  background:var(--dark);color:#fff;font-size:.78rem;
+  padding:.45rem .9rem;border-radius:2rem;
+  box-shadow:0 4px 18px rgba(0,0,0,.25);
+  opacity:0;transform:translateX(10px);
+  transition:opacity .25s,transform .25s;
+  white-space:nowrap;pointer-events:none;
+}
+.wa-float:hover .wa-label-bubble{opacity:1;transform:translateX(0);}
+.wa-btn{
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#128c3e);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(37,211,102,.4);
+  text-decoration:none;
+  animation:pulse-wa 2s ease-in-out infinite;
+}
+.wa-btn svg{width:30px;height:30px;fill:#fff;}
+
+@keyframes pulse-wa{
+  0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.5);}
+  50%{box-shadow:0 4px 18px rgba(37,211,102,.4),0 0 0 14px rgba(37,211,102,0);}
+}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  nav{padding:.9rem 1.2rem;}
+  .nav-links{display:none;}
+  .historia-inner,.mapa-inner,.contacto-inner{grid-template-columns:1fr;}
+  .historia-texto{text-align:left;}
+  .hf-grid{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .hero-stats{gap:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#inicio" class="nav-logo">
+    <img src="assets/logo-nav.png" alt="Üpangen Chena logo">
+    <div class="nav-wordmark">Üpangen Chena<span>Restaurant</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#historia">Nosotros</a></li>
+    <li><a href="#platos">Carta</a></li>
+    <li><a href="#mapa">Ubicación</a></li>
+    <li><a href="#contacto" class="nav-btn">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+  <div class="badge">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    Los Vilos · Pérgola N°9 · Coquimbo
+  </div>
+  <h1>Üpangen<br><em>Chena</em></h1>
+  <div class="hero-restaurant">Restaurant</div>
+  <p class="hero-sub">Amanecer del Mar — cocina costera con alma mapuche</p>
+  <div class="hero-ctas">
+    <a href="#contacto" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Escríbenos
+    </a>
+    <a href="#platos" class="btn-outline">Ver la carta</a>
+  </div>
+  <div class="hero-social">
+    <a href="https://www.instagram.com/upangenchena" target="_blank" class="hero-social-icon" aria-label="Instagram">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <defs>
+          <linearGradient id="ig-hero" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f09433"/>
+            <stop offset="25%" stop-color="#e6683c"/>
+            <stop offset="50%" stop-color="#dc2743"/>
+            <stop offset="75%" stop-color="#cc2366"/>
+            <stop offset="100%" stop-color="#bc1888"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="url(#ig-hero)" stroke-width="1.8"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="url(#ig-hero)" stroke-width="1.8"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="url(#ig-hero)" stroke-width="2.2"/>
+      </svg>
+    </a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=-31.90975,-71.51048&destination_place_id=Upangen+Chena+Pergola+9+Los+Vilos+Chile" target="_blank" class="hero-social-icon" aria-label="Google Maps">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335" stroke="none"/>
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 1.8.6 3.5 1.6 4.8L16.8 3.8A6.96 6.96 0 0 0 12 2z" fill="#C5221F" stroke="none"/>
+        <circle cx="12" cy="9" r="2.8" fill="#fff" stroke="none"/>
+        <circle cx="12" cy="9" r="1.4" fill="#4285F4" stroke="none"/>
+      </svg>
+    </a>
+  </div>
+  <!-- Wave SVG -->
+  <div class="hero-waves">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;display:block;">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5ede0"/>
+    </svg>
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section class="historia" id="historia">
+  <div class="container">
+    <div class="historia-inner">
+      <div class="reveal">
+        <div class="slideshow" id="historia-slideshow">
+          <div class="slideshow-slide active"><img src="assets/foto-historia-1.jpg" alt="Pérgola N°9 · Los Vilos"></div>
+          <div class="slideshow-slide"><img src="assets/foto-historia-2.jpg" alt="Nuestro equipo"></div>
+          <div class="slideshow-slide"><img src="assets/foto-historia-3.jpg" alt="Ambiente familiar"></div>
+          <div class="slideshow-slide"><img src="assets/foto-historia-4.jpg" alt="Frente al mar"></div>
+          <div class="slideshow-overlay"></div>
+          <div class="slideshow-label">Pérgola N°9 · Los Vilos</div>
+          <div class="slideshow-dots"><button class="slideshow-dot active" onclick="goSlide(0)" aria-label="Foto 1"></button><button class="slideshow-dot" onclick="goSlide(1)" aria-label="Foto 2"></button><button class="slideshow-dot" onclick="goSlide(2)" aria-label="Foto 3"></button><button class="slideshow-dot" onclick="goSlide(3)" aria-label="Foto 4"></button></div>
+        </div>
+      </div>
+      <div class="reveal historia-texto">
+        <span class="section-tag">Nuestra historia</span>
+        <h2 class="section-title">Cierra los ojos.<br>Huele el <em>mar</em>.</h2>
+        <p class="section-body">
+          Brisa salada, madera cálida, mariscos recién preparados. Eso es Üpangen Chena — <strong>"Amanecer del Mar"</strong> en lengua mapuche.<br><br>
+          Nacimos del deseo de llevar los sabores más auténticos del litoral central chileno a tu mesa. <strong>La Chenita</strong> y su equipo te reciben en la Pérgola N°9 con ingredientes del día, recetas de raíz y el calor de una cocina que se nota en cada bocado.<br><br>
+          <em>Ven una vez — vas a querer volver.</em>
+        </p>
+        <div class="historia-chips">
+          <span class="chip">🌊 Frente al mar</span>
+          <span class="chip">👨‍👩‍👧 Familiar</span>
+          <span class="chip">🐾 Pet friendly</span>
+          <span class="chip">🎉 Eventos privados</span>
+        </div>
+      </div>
+    </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- PLATOS -->
+<section class="platos" id="platos">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:.5rem;">
+      <span class="section-tag">La carta</span>
+      <h2 class="section-title" style="color:var(--ocean);">Platos <em>estrella</em></h2>
+    </div>
+    <div class="platos-grid">
+      <!-- Paila Marina -->
+      <div class="plato-card reveal">
+        <div class="plato-img" style="position:relative;overflow:hidden;">
+          <div class="paila-slide active" style="position:absolute;inset:0;opacity:1;transition:opacity 0.7s ease;"><img src="assets/paila-marina-1.jpg" alt="Paila Marina" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="paila-slide" style="position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;"><img src="assets/paila-marina-2.jpg" alt="Paila Marina 2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        </div>
+        <div class="plato-body">
+          <div class="plato-name">Paila Marina</div>
+          <div class="plato-desc">Una preparación generosa y llena de tradición, hecha por la Chenita con mariscos frescos del día y un caldo profundo, sabroso y reconfortante. Una receta de siempre, con ese toque casero que abraza y lleva a la mesa el verdadero sabor del mar.</div>
+          <div class="plato-tag">★ Más pedido</div>
+        </div>
+      </div>
+      <!-- Chupe de Jaiba -->
+      <div class="plato-card reveal">
+        <div class="plato-img" style="position:relative;overflow:hidden;">
+          <div class="chupe-slide active" style="position:absolute;inset:0;opacity:1;transition:opacity 0.7s ease;"><img src="assets/empanada-ceviche.jpg" alt="Chupe de Jaiba" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="chupe-slide" style="position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;"><img src="assets/chupe-jaiba-1.jpg" alt="Chupe de Jaiba 2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        </div>
+        <div class="plato-body">
+          <div class="plato-name">Chupe de Jaiba</div>
+          <div class="plato-desc">Cremoso, gratinado y lleno de jaiba fresca. Una receta generosa y casera, preparada por la Chenita con ese sabor profundo de la cocina tradicional chilena. Disponible en trilogía de chupes o en porción individual.</div>
+          <div class="plato-tag">★ Imperdible</div>
+        </div>
+      </div>
+      <!-- Empanadas Ceviche -->
+      <div class="plato-card reveal">
+        <div class="plato-img">
+          <img src="assets/chupe-jaiba-2.jpg" alt="Empanada de Ceviche" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="plato-body">
+          <div class="plato-name">Empanada de Ceviche</div>
+          <div class="plato-desc">El sello de la casa. Una mezcla fresca, intensa y llena de sabor marino, inspirada en el ceviche tradicional de la Chenita y envuelta en una empanada única, crujiente y hecha con ese toque casero que no se olvida.</div>
+          <div class="plato-tag">✦ Sello Üpangen</div>
+        </div>
+      </div>
+
+      <!-- Machas Parmesana -->
+      <div class="plato-card reveal">
+        <div class="plato-img" style="position:relative;overflow:hidden;">
+          <div class="machas-slide active" style="position:absolute;inset:0;opacity:1;transition:opacity 0.7s ease;"><img src="assets/machas-1.jpg" alt="Machas a la Parmesana" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="machas-slide" style="position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;"><img src="assets/machas-2.jpg" alt="Machas a la Parmesana 2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        </div>
+        <div class="plato-body">
+          <div class="plato-name">Machas a la Parmesana</div>
+          <div class="plato-desc">Una trilogía gratinada al punto perfecto, preparada con machas frescas de la costa de Los Vilos, queso dorado y el sabor casero que distingue la cocina de la Chenita. Un clásico del mar servido con tradición y carácter.</div>
+          <div class="plato-tag">✦ Favorita</div>
+        </div>
+      </div>
+      <!-- Ceviche -->
+      <div class="plato-card reveal">
+        <div class="plato-img">
+          <img src="assets/ceviche.jpg" alt="Ceviche" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="plato-body">
+          <div class="plato-name">Ceviche Innovador</div>
+          <div class="plato-desc">Fresco, intenso y lleno de identidad local. Una preparación que sorprende por su equilibrio entre sabor marino, acidez justa y ese toque casero de la Chenita en cada bocado.</div>
+          <div class="plato-tag">✦ Creativo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+
+
+<!-- RESEÑAS -->
+<section class="resenas" id="resenas">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Lo que dicen</span>
+      <h2 class="section-title">Opiniones <em>reales</em></h2>
+    </div>
+    <div class="rating-big reveal">
+      <div class="rating-num">4.7</div>
+      <div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-count">Basado en 325+ reseñas · Google Maps</div>
+      </div>
+    </div>
+    <div class="resenas-grid">
+      <div class="resena-card reveal">
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-text">"El mejor restaurante de Los Vilos sin duda. La paila marina es espectacular y las porciones son generosas. Volvería mil veces."</p>
+        <div class="resena-autor">— Visitante de Santiago</div>
+      </div>
+      <div class="resena-card reveal">
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-text">"Llegamos de paso y fue una sorpresa increíble. El chupe de jaiba, las empanadas de ceviche… todo fresco y delicioso. Camila, excelente atención."</p>
+        <div class="resena-autor">— Turista de paso</div>
+      </div>
+      <div class="resena-card reveal">
+        <div class="resena-stars">★★★★☆</div>
+        <p class="resena-text">"El pisco sour de bienvenida ya te pone de buen ánimo. Los mariscos son fresquísimos. Lugar pet friendly que se agradece mucho con nuestros perros."</p>
+        <div class="resena-autor">— Familia local</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA + UBICACIÓN -->
+<section class="mapa-section" id="mapa">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Cómo llegar</span>
+      <h2 class="section-title">Encuéntranos en <em>Los Vilos</em></h2>
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;color:var(--ocean2);">Te esperamos con los brazos abiertos y el mar en la mesa.</p>
+    </div>
+    <div class="mapa-inner">
+      <div class="mapa-frame reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.8!2d-71.5105!3d-31.9098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9691fb21f22b2a2b%3A0xb8f7c3a1d4e5f6a7!2sAv.%20Salvador%20Allende%20P%C3%A9rgola%209%2C%20Los%20Vilos%2C%20Regi%C3%B3n%20de%20Coquimbo!5e0!3m2!1ses!2scl!4v1716000000001!5m2!1ses!2scl"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Üpangen Chena · Pérgola N°9 · Los Vilos">
+        </iframe>
+        <a href="https://www.google.com/maps/search/Upangen+Chena+Restaurant+Pergola+9+Los+Vilos+Chile/@-31.9098,-71.5105,17z" target="_blank"
+           style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
+                  background:#fff;color:#1a73e8;font-size:.78rem;font-weight:600;
+                  padding:.45rem 1.1rem;border-radius:.5rem;text-decoration:none;
+                  box-shadow:0 2px 8px rgba(0,0,0,.25);display:inline-flex;
+                  align-items:center;gap:.4rem;white-space:nowrap;z-index:10;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/>
+            <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+          </svg>
+          Ver Üpangen Chena en Maps ↗
+        </a>
+      </div>
+      <div class="mapa-info reveal">
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C7.58 2 4 5.58 4 10c0 6 8 14 8 14s8-8 8-14c0-4.42-3.58-8-8-8z" fill="var(--teal)" opacity=".15"/>
+              <path d="M12 2C7.58 2 4 5.58 4 10c0 6 8 14 8 14s8-8 8-14c0-4.42-3.58-8-8-8z" stroke="var(--teal)" stroke-width="1.6" fill="none"/>
+              <circle cx="12" cy="10" r="3" fill="var(--teal)" opacity=".8"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">Dirección</div>
+            <div class="info-value">Av. Salvador Allende, Pérgola N°9<br>Los Vilos, Región de Coquimbo<br>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=-31.90975,-71.51048&destination_place_id=Upangen+Chena+Pergola+9+Los+Vilos+Chile" target="_blank" style="font-size:.8rem;color:var(--coral);font-weight:600;display:inline-flex;align-items:center;gap:.3rem;margin-top:.4rem;text-decoration:none;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                Cómo llegar →
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" fill="var(--teal)" opacity=".12" stroke="var(--teal)" stroke-width="1.6"/>
+              <polyline points="12 7 12 12 15.5 14.5" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="1.5" fill="var(--teal)"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">Horario</div>
+            <div class="info-value">Lunes a Domingo<br>12:00 – 21:00 hrs</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="2" width="18" height="20" rx="4" fill="var(--teal)" opacity=".12" stroke="var(--teal)" stroke-width="1.5"/>
+              <path d="M9 8h6M9 12h4" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="1.2" fill="var(--teal)"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">WhatsApp</div>
+            <div class="info-value"><a href="https://wa.me/56973953781" target="_blank">+56 9 7395 3781</a></div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="18" height="18" rx="5" fill="var(--teal)" opacity=".12" stroke="var(--teal)" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="3.5" stroke="var(--teal)" stroke-width="1.5" fill="none"/>
+              <circle cx="17" cy="7" r="1.2" fill="var(--teal)"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">Redes sociales</div>
+            <div class="info-value"><a href="https://www.instagram.com/upangenchena" target="_blank">@upangenchena</a></div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-8 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Estacionamiento</div>
+            <div class="info-value">Calle frente a la costanera<br>Acceso fácil desde la Ruta 5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="contacto-inner">
+      <div class="reveal">
+        <span class="section-tag" style="color:var(--foam);">Escríbenos</span>
+        <h2 class="section-title">Hablemos por<br><em style="color:var(--foam);">WhatsApp</em></h2>
+        <p class="section-body">Sin formularios complicados. Cuéntanos qué necesitas — reserva para grupo, evento especial, o simplemente preguntas sobre la carta — y te respondemos a la brevedad.</p>
+        <div class="social-links">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/upangenchena" target="_blank" class="social-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="1.8">
+              <defs>
+                <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f09433"/>
+                  <stop offset="25%" stop-color="#e6683c"/>
+                  <stop offset="50%" stop-color="#dc2743"/>
+                  <stop offset="75%" stop-color="#cc2366"/>
+                  <stop offset="100%" stop-color="#bc1888"/>
+                </linearGradient>
+              </defs>
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            <div>
+              <div style="font-weight:500;">Instagram</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.45);">@upangenchena</div>
+            </div>
+            <span>Seguir →</span>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/56973953781" target="_blank" class="social-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            <div>
+              <div style="font-weight:500;">WhatsApp</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.45);">+56 9 7395 3781</div>
+            </div>
+            <span>Chatear →</span>
+          </a>
+          <!-- Google Maps -->
+          <a href="https://www.google.com/maps/dir/?api=1&destination=-31.90975,-71.51048&destination_place_id=Upangen+Chena+Pergola+9+Los+Vilos+Chile" target="_blank" class="social-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="0">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/>
+              <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+            </svg>
+            <div>
+              <div style="font-weight:500;">Cómo llegar</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.45);">Pérgola N°9 · Los Vilos</div>
+            </div>
+            <span>Ver →</span>
+          </a>
+        </div>
+      </div>
+      <!-- Formulario / CTA directo -->
+      <div class="contact-form reveal">
+        <h3>¿Tienes alguna consulta?</h3>
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input type="text" placeholder="¿Cómo te llamamos?">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Personas</label>
+            <select>
+              <option>1–2 personas</option>
+              <option>3–5 personas</option>
+              <option>6–10 personas</option>
+              <option>Más de 10</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tipo de visita</label>
+            <select>
+              <option>Almuerzo</option>
+              <option>Cena</option>
+              <option>Evento privado</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mensaje o consulta</label>
+          <textarea rows="3" placeholder="Cuéntanos qué necesitas…"></textarea>
+        </div>
+        <button class="btn-wa" onclick="sendToWA()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <img src="assets/logo-footer.png" alt="Üpangen Chena" style="height:90px;width:auto;margin-bottom:.2rem;opacity:.92;">
+    <div class="footer-logo">Üpangen<em>Chena</em></div>
+    <div class="footer-sep"></div>
+    <p class="footer-text">
+      Av. Salvador Allende, Pérgola N°9 · Los Vilos, Coquimbo, Chile<br>
+      🌊 Amanecer del Mar — Cocina costera con alma mapuche
+    </p>
+    <p class="footer-text" style="font-size:.72rem;opacity:.5;">© 2025 Üpangen Chena · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE TITILANDO -->
+<div class="wa-float">
+  <div class="wa-label-bubble">¡Escríbenos!</div>
+  <a href="https://wa.me/56973953781?text=Hola%2C%20vi%20su%20página%20y%20quiero%20consultar%20sobre..." 
+     target="_blank" class="wa-btn" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+// Machas mini-slideshow
+let machasIdx = 0;
+const machasSlides = document.querySelectorAll('.machas-slide');
+if(machasSlides.length) {
+  setInterval(() => {
+    machasSlides[machasIdx].style.opacity = '0';
+    machasIdx = (machasIdx + 1) % machasSlides.length;
+    machasSlides[machasIdx].style.opacity = '1';
+  }, 3500);
+}
+
+// Chupe de Jaiba mini-slideshow
+let chupeIdx = 0;
+const chupeSlides = document.querySelectorAll('.chupe-slide');
+if(chupeSlides.length) {
+  setInterval(() => {
+    chupeSlides[chupeIdx].style.opacity = '0';
+    chupeIdx = (chupeIdx + 1) % chupeSlides.length;
+    chupeSlides[chupeIdx].style.opacity = '1';
+  }, 3200);
+}
+
+// Paila Marina mini-slideshow
+let pailaIdx = 0;
+const pailaSlides = document.querySelectorAll('.paila-slide');
+if(pailaSlides.length) {
+  setInterval(() => {
+    pailaSlides[pailaIdx].style.opacity = '0';
+    pailaIdx = (pailaIdx + 1) % pailaSlides.length;
+    pailaSlides[pailaIdx].style.opacity = '1';
+  }, 3000);
+}
+
+// Slideshow
+let slideIdx = 0;
+const slides = document.querySelectorAll('.slideshow-slide');
+const dots = document.querySelectorAll('.slideshow-dot');
+const label = document.querySelector('.slideshow-label');
+const slideLabels = ['Pérgola N°9 · Los Vilos','Nuestro equipo','Ambiente familiar','Frente al mar'];
+
+function goSlide(n) {
+  slides[slideIdx].classList.remove('active');
+  dots[slideIdx].classList.remove('active');
+  slideIdx = n;
+  slides[slideIdx].classList.add('active');
+  dots[slideIdx].classList.add('active');
+  if(label) label.textContent = slideLabels[slideIdx];
+}
+function nextSlide() { goSlide((slideIdx + 1) % slides.length); }
+let ssTimer = setInterval(nextSlide, 2800);
+document.getElementById('historia-slideshow')?.addEventListener('mouseenter', () => clearInterval(ssTimer));
+document.getElementById('historia-slideshow')?.addEventListener('mouseleave', () => { ssTimer = setInterval(nextSlide, 2800); });
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// WhatsApp form
+function sendToWA() {
+  const nombre = document.querySelector('input[type=text]').value.trim();
+  const personas = document.querySelectorAll('select')[0].value;
+  const tipo = document.querySelectorAll('select')[1].value;
+  const msg = document.querySelector('textarea').value.trim();
+  const text = `Hola Üpangen Chena! 🌊\n\nNombre: ${nombre || 'No indicado'}\nPersonas: ${personas}\nVisita: ${tipo}\nMensaje: ${msg || 'Sin mensaje adicional'}`;
+  window.open(`https://wa.me/56973953781?text=${encodeURIComponent(text)}`, '_blank');
+}
+</script>
+<audio id="chime-sound" preload="auto">
+  <source src="assets/sonido-contacto.wav" type="audio/wav">
+</audio>
+<script>
+// Sound on Contacto nav btn
+document.querySelector('.nav-btn')?.addEventListener('click', function() {
+  playChime();
+});
+// Sound on ALL "Ver la carta" buttons/links anywhere on page
+document.querySelectorAll('a, button').forEach(el => {
+  if(el.textContent.trim().includes('Ver la carta') || el.textContent.trim().includes('Ver la Carta')) {
+    el.addEventListener('click', function(e) {
+      playChime();
+    });
+  }
+});
+function playChime() {
+  const s = document.getElementById('chime-sound');
+  if(s){ s.currentTime=0; s.volume=0.7; s.play().catch(()=>{}); }
+}
+</script>
+</body>
+</html>
